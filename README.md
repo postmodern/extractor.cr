@@ -19,7 +19,7 @@ libextractor is a part of the [GNU project](http://www.gnu.org/).
 
 ## Installation
 
-1. Install libextractor
+1. Install `libextractor`
 
    * Debian / Ubuntu
 
@@ -47,17 +47,26 @@ libextractor is a part of the [GNU project](http://www.gnu.org/).
 
 * [libextractor] >= 0.6.0
 
-## Usage
+## Examples
 
 ```crystal
 require "extractor"
-```
 
-TODO: Write usage instructions here
+Extractor.extract(string) do |plugin_name,type,format,mime_type,data|
+  p {plugin, type, format, mime_type,data}
+end
+
+Extractor.extract_from("path/to/image.jpg") do |plugin_name,type,format,mime_type,data|
+  p {plugin, type, format, mime_type,data}
+end
+```
 
 ## Development
 
-TODO: Write development instructions here
+1. Install `libextractor` (See [Installation](#Installation))
+2. `git clone https://github.com/postmodern/extractor.cr.git`
+3. `cd extractor.cr`
+4. `crystal spec`
 
 ## Contributing
 
