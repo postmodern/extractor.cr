@@ -37,14 +37,6 @@ module Extractor
       plugin_names[plugin] = libname.sub("libextractor_","")
     end
 
-    def self.box(closure : Callback)
-      boxed_closure = Box.box(closure)
-    end
-
-    def self.unbox(cls : Void *)
-      Box(Callback).unbox(cls)
-    end
-
     CALLBACK = ->(cls : Void *, plugin : Char *, type : MetaType, format : MetaFormat, mime_type : Char *, data : Char *, size : SizeT) {
       callback    = unbox(cls)
       plugin_name = PLUGIN_NAMES[String.new(plugin)]
@@ -66,6 +58,20 @@ module Extractor
         1
       end
     }
+
+    #
+    # Wraps a closure in a box.
+    #
+    def self.box(closure : Callback) : Pointer(Void)
+      boxed_closure = Box.box(closure)
+    end
+
+    #
+    # Unwraps a boxed closure.
+    #
+    def self.unbox(cls : Void *) : Callback
+      Box(Callback).unbox(cls)
+    end
 
     #
     # Returns a proc literal for the `call` method.
