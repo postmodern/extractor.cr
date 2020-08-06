@@ -18,13 +18,13 @@
 #
 
 module Extractor
-  class MetadataProcessor
+  module MetadataProcessor
 
     alias Char = LibC::Char
     alias SizeT = LibC::SizeT
     alias MetaType = LibExtractor::MetaType
     alias MetaFormat = LibExtractor::MetaFormat
-    alias MetaData = String | Bytes | Slice(UInt8)
+    alias MetaData = String | Bytes
     alias Callback = (String, MetaType, MetaFormat, String, MetaData) ->
 
     class Abort < RuntimeError
@@ -37,29 +37,25 @@ module Extractor
       plugin_names[plugin] = libname.sub("libextractor_","")
     end
 
-    getter callback : Pointer(Void)
-
-    #
-    # Wraps a Metadata Processor callback.
-    #
-    def initialize(&block : Callback)
-      @callback = Box.box(block)
+    def self.box(closure : Callback)
+      boxed_closure = Box.box(closure)
     end
 
-    #
-    # Invokes the callback.
-    #
-    def call(cls : Void *, plugin : Char *, type : MetaType, format : MetaFormat, mime_type : Char *, data : Char *, size : SizeT) : Int32
-      callback    = Box(Callback).unbox(cls)
+    def self.unbox(cls : Void *)
+      Box(Callback).unbox(cls)
+    end
+
+    CALLBACK = ->(cls : Void *, plugin : Char *, type : MetaType, format : MetaFormat, mime_type : Char *, data : Char *, size : SizeT) {
+      callback    = unbox(cls)
       plugin_name = PLUGIN_NAMES[String.new(plugin)]
       mime_type   = String.new(mime_type)
       value       = case format
-                    when MetaFormat::C_STRING
-                      String.new(Bytes.new(data,size - 1),"ASCII")
                     when MetaFormat::UTF8
                       String.new(Bytes.new(data,size - 1),"UTF-8")
+                    when MetaFormat::C_STRING
+                      String.new(Bytes.new(data,size - 1),"ASCII")
                     else
-                      Slice.new(data,size)
+                      Bytes.new(data,size)
                     end
 
       begin
@@ -69,13 +65,13 @@ module Extractor
       rescue Abort
         1
       end
-    end
+    }
 
     #
     # Returns a proc literal for the `call` method.
     #
-    def to_unsafe
-      ->call(Void *, Char *, MetaType, MetaFormat, Char *, Char *, SizeT)
+    def self.to_unsafe
+      CALLBACK
     end
 
   end

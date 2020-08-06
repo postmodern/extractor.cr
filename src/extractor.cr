@@ -49,18 +49,18 @@ module Extractor
   #
   # Extracts metadata from the given String.
   #
-  def self.extract(data : String, plugins = Extractor.plugins, &block : MetadataProcessor::Callback)
-    processor = MetadataProcessor.new(&block)
+  def self.extract(data : String, plugins = Extractor.plugins, &block : (String, MetaType, MetaFormat, String, MetaData) ->)
+    callback = MetadataProcessor.box(block)
 
-    LibExtractor.EXTRACTOR_extract(plugins,nil,data,data.size,processor,processor.callback)
+    LibExtractor.EXTRACTOR_extract(plugins,nil,data,data.size,MetadataProcessor,callback)
   end
 
   #
   # Extracts metadata from a file.
   #
-  def self.extract_from(path : String | Path, plugins = Extractor.plugins, &block : MetadataProcessor::Callback)
-    processor = MetadataProcessor.new(&block)
+  def self.extract_from(path : String | Path, plugins = Extractor.plugins, &block : (String, MetaType, MetaFormat, String, MetaData) ->)
+    callback = MetadataProcessor.box(block)
 
-    LibExtractor.EXTRACTOR_extract(plugins,path,nil,0,processor,processor.callback)
+    LibExtractor.EXTRACTOR_extract(plugins,path,nil,0,MetadataProcessor,callback)
   end
 end
