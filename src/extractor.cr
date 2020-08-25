@@ -41,7 +41,6 @@ module Extractor
   #
   # Aborts metadata extraction.
   #
-  @[Raises(MetadataProcessor::Abort)]
   def self.abort!
     raise(MetadataProcessor::Abort.new)
   end

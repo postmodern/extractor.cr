@@ -409,6 +409,7 @@ lib LibExtractor
   fun EXTRACTOR_plugin_remove(prev : PluginListPtr, library : Char *) : PluginListPtr
   fun EXTRACTOR_plugin_remove_all(plugins : PluginListPtr) : Void
 
+  @[Raises(Extractor::MetadataProcessor::Absort)]
   fun EXTRACTOR_extract(plugin : PluginListPtr,
                         filename : Char *,
                         data : Void *,

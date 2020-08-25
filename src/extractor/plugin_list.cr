@@ -50,7 +50,6 @@ module Extractor
     #
     # Loads the installed extractor plugins.
     #
-    @[Raises(PluginsLoadError)]
     def self.default(policy = Options::DEFAULT_POLICY)
       ptr = LibExtractor.EXTRACTOR_plugin_add_defaults(policy)
 
@@ -66,7 +65,6 @@ module Extractor
     #
     # Loads a plugin and adds it to the list.
     #
-    @[Raises(PluginNotFound)]
     def add(name : PluginName, options = "", flags = Options::DEFAULT_POLICY) : PluginList
       name    = name.to_s
       new_ptr = LibExtractor.EXTRACTOR_plugin_add(@ptr,name,options,flags)
@@ -82,7 +80,6 @@ module Extractor
     #
     # Removes a plugin from the list.
     #
-    @[Raises(UnknownPlugin)]
     def remove(name : PluginName) : PluginList
       name    = name.to_s
       new_ptr = LibExtractor.EXTRACTOR_plugin_remove(@ptr,name)
