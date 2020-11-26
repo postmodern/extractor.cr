@@ -13,9 +13,10 @@ jobs:
       image: crystallang/crystal
     steps:
     - uses: actions/checkout@v2
-    - uses: ryankurte/action-apt@v0.2.0
-      with: 
-        packages: libextractor libextractor-plugins-all
+    - name: Install libextractor
+      run: |
+        apt update -y && \
+        apt install -y libextractor libextractor-plugins-all
     - name: Install dependencies
       run: shards install
     - name: Run tests
