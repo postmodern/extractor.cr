@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ '**' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: crystallang/crystal
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install libextractor
+      run: sudo apt-get install libextractor libextractor-plugins
+    - name: Install dependencies
+      run: shards install
+    - name: Run tests
+      run: crystal spec
