@@ -21,7 +21,11 @@ libextractor is a part of the [GNU project](http://www.gnu.org/).
 
 1. Install `libextractor`
 
-   * Debian / Ubuntu
+   * Debian
+
+         $ sudo apt-get install libextractor3 libextractor-plugins-all
+
+   * Ubuntu
 
          $ sudo apt-get install libextractor libextractor-plugins-all
 
