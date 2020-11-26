@@ -13,7 +13,7 @@ jobs:
       image: crystallang/crystal
     steps:
     - uses: actions/checkout@v2
-    - uses: ryankurte/action-apt@v0.1
+    - uses: ryankurte/action-apt@v0.2.0
       with: 
         packages: libextractor libextractor-plugins-all
     - name: Install dependencies
