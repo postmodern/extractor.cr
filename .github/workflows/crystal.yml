@@ -16,7 +16,7 @@ jobs:
     - name: Install libextractor
       run: |
         apt-get update -y -qq
-        apt-get install -y -qq libextractor libextractor-plugins
+        apt-get install -y -qq libextractor libextractor-plugins-all
     - name: Install dependencies
       run: shards install
     - name: Run tests

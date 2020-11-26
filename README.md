@@ -23,7 +23,7 @@ libextractor is a part of the [GNU project](http://www.gnu.org/).
 
    * Debian / Ubuntu
 
-         $ sudo apt-get install libextractor libextractor-plugins
+         $ sudo apt-get install libextractor libextractor-plugins-all
 
    * RedHat / Fedora:
 
