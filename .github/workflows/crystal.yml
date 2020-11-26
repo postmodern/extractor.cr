@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install libextractor
       run: |
-        apt update && \
-        apt install -yq libextractor libextractor-plugins-all
+        apt-get update -q && \
+        apt-get install -yq libextractor libextractor-plugins-all
     - name: Install dependencies
       run: shards install
     - name: Run tests
