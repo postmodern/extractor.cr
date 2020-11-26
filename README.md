@@ -23,15 +23,15 @@ libextractor is a part of the [GNU project](http://www.gnu.org/).
 
    * Debian
 
-         $ sudo apt-get install libextractor3 libextractor-plugins-all
+         $ sudo apt-get install libextractor-dev libextractor-plugins-all
 
    * Ubuntu
 
-         $ sudo apt-get install libextractor libextractor-plugins-all
+         $ sudo apt-get install libextractor-dev libextractor-plugins-all
 
    * RedHat / Fedora:
 
-         $ sudo yum install libextractor libextractor-plugins
+         $ sudo yum install libextractor-devel libextractor-plugins
 
    * Brew:
 
