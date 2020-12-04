@@ -6,7 +6,8 @@
 * [Email](mailto:postmodern.mod3 at gmail.com)
 
 [Crystal][crystal] bindings to [libextractor], a library for extracting
-metadata from a variety of file formats.
+metadata from a variety of file formats. Inspired by the Ruby [ffi-extractor]
+gem and should be API compatible.
 
 [libextractor] is a simple library for keyword extraction.  libextractor
 does not support all formats but supports a simple plugging mechanism
