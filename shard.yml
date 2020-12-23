@@ -11,4 +11,5 @@ license: GPL-3
 development_dependencies:
   spectator:
     gitlab: arctic-fox/spectator
+    branch: contain_elements_matcher
     version: ">= 0.9.9 and < 1.0.0"

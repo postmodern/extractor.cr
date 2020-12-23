@@ -38,7 +38,7 @@ Spectator.describe Extractor do
         findings << {plugin_name, type, format, mime_type, data}
       end
 
-      expect(findings & expected_metadata).to match_array(expected_metadata).in_any_order
+      expect(findings).to contain_elements(expected_metadata)
     end
   end
 
@@ -50,7 +50,7 @@ Spectator.describe Extractor do
         findings << {plugin_name, type, format, mime_type, data}
       end
 
-      expect(findings & expected_metadata).to match_array(expected_metadata).in_any_order
+      expect(findings).to contain_elements(expected_metadata)
     end
   end
 end
