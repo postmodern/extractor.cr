@@ -8,6 +8,9 @@ crystal: 0.35.1
 
 license: GPL-3
 
+libraries:
+  libextractor: ">= 0.6.0"
+
 development_dependencies:
   spectator:
     gitlab: arctic-fox/spectator
