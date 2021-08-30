@@ -3,7 +3,6 @@
 * [Homepage](https://github.com/postmodern/xtractor.cr#readme)
 * [Issues](https://github.com/postmodern/extractor.cr/issues)
 * [Docs](https://postmodern.github.io/docs/extractor.cr/index.html)
-* [Email](mailto:postmodern.mod3 at gmail.com)
 
 [Crystal][crystal] bindings to [libextractor], a library for extracting
 metadata from a variety of file formats. Inspired by the Ruby [ffi-extractor]
